@@ -1,3 +1,5 @@
+print("Affine Cipher")
+
 plaintext = input("Enter the plaintext: ")
 a = int(input("Enter the key (a): "))
 b = int(input("Enter the key (b): "))
