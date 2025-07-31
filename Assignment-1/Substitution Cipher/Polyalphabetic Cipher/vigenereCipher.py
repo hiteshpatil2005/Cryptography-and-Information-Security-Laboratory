@@ -1,19 +1,17 @@
 plaintext = input("Enter the plaintext : ")
 keyword = input("Enter the Keyword : ")
 
-cipherText = ""
+cipherText = []
 
-for ch in range(len(plaintext)):
-    if plaintext[ch].isupper():
-        index = ord(plaintext[ch]) - ord('A') + ord(keyword[ch % len(keyword)].upper()) - ord('A')
-        index = index % 26
-        cipherText += keyword[index].upper()
-
-    elif plaintext[ch].islower():
-        index = ord(plaintext[ch]) - ord('a') + ord(keyword[ch % len(keyword)].lower()) - ord('a')
-        index = index % 26
-        cipherText += keyword[index].lower()
-
+for i in range(len(plaintext)):
+    if plaintext[i].isalpha():
+        is_upper = plaintext[i].isupper()
+        index = (ord(plaintext[i].upper()) - ord('A') + ord(keyword[i % len(keyword)].upper()) - ord('A')) % 26
+        substituted_char = chr(index + ord('A'))
+        if not is_upper:
+            substituted_char = substituted_char.lower()
+        cipherText.append(substituted_char)
     else:
-        cipherText += plaintext[ch]
-print("Ciphertext:", cipherText)
+        cipherText.append(plaintext[i])     
+
+print("Encrypted Text:", ''.join(cipherText))      
