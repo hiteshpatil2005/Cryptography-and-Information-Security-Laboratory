@@ -67,6 +67,8 @@ def PlayfairEncrypt(plaintext, key):
 
     return ciphertext
 
+print("Playfair Cipher")
+
 plaintext = input("Enter the plaintext message: ")
 key = input("Enter the keyword: ")
 
