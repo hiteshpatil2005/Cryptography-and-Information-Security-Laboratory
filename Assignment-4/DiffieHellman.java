@@ -2,7 +2,8 @@ import java.math.BigInteger;
 import java.util.Scanner;
 
 public class DiffieHellman {
-    public static void main(String[] args) {
+    public static void main(String[] args) 
+    {
         Scanner sc = new Scanner(System.in);
 
         System.out.print("Enter a prime number (q): ");
@@ -31,9 +32,12 @@ public class DiffieHellman {
         System.out.println("Shared Secret (Ya): "+ sharedSecretAlice);
         System.out.println("Shared Secret (Yb): "+ sharedSecretBob);
 
-        if (sharedSecretAlice.equals(sharedSecretBob)) {
+        if (sharedSecretAlice.equals(sharedSecretBob)) 
+        {
             System.out.println("\n Both parties share the same secret key: " + sharedSecretAlice);
-        } else {
+        } 
+        else 
+        {
             System.out.println("\n Secrets do not match.");
         }
         sc.close();
