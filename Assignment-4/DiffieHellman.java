@@ -44,7 +44,6 @@ public class DiffieHellman {
         if (!isPrimitiveRoot(g, prime)) 
         {
             System.out.println("\n" + g + " is not a valid primitive root modulo " + prime);
-            System.out.println("Please restart and enter a correct alpha value.");
             sc.close();
             return; 
         } 
