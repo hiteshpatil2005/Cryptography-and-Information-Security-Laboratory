@@ -2,16 +2,20 @@ import java.math.BigInteger;
 import java.util.Scanner;
 
 public class RSA {
-    public static boolean isPrime(int n) {
+    public static boolean isPrime(int n) 
+    {
         if (n < 2) return false;
-        for (int i = 2; i <= Math.sqrt(n); i++) {
+        for (int i = 2; i <= Math.sqrt(n); i++) 
+        {
             if (n % i == 0) return false;
         }
         return true;
     }
 
-    public static BigInteger gcd(BigInteger a, BigInteger b) {
-        while (!b.equals(BigInteger.ZERO)) {
+    public static BigInteger gcd(BigInteger a, BigInteger b) 
+    {
+        while (!b.equals(BigInteger.ZERO)) 
+        {
             BigInteger temp = b;
             b = a.mod(b);
             a = temp;
@@ -19,10 +23,13 @@ public class RSA {
         return a;
     }
 
-    public static BigInteger modinv(BigInteger e, BigInteger phi) {
+    public static BigInteger modinv(BigInteger e, BigInteger phi) 
+    {
         BigInteger d = BigInteger.ZERO, x1 = BigInteger.ZERO, x2 = BigInteger.ONE, y1 = BigInteger.ONE;
         BigInteger tempPhi = phi;
-        while (e.compareTo(BigInteger.ZERO) > 0) {
+
+        while (e.compareTo(BigInteger.ZERO) > 0) 
+        {
             BigInteger temp1 = tempPhi.divide(e);
             BigInteger temp2 = tempPhi.subtract(temp1.multiply(e));
             tempPhi = e;
@@ -40,14 +47,17 @@ public class RSA {
         return null;
     }
 
-    public static void main(String[] args) {
-        try (Scanner sc = new Scanner(System.in)) {
+    public static void main(String[] args) 
+    {
+        try (Scanner sc = new Scanner(System.in)) 
+        {
             System.out.print("Enter first prime number (p): ");
             int p = sc.nextInt();
             System.out.print("Enter second prime number (q): ");
             int q = sc.nextInt();
 
-            if (!isPrime(p) || !isPrime(q)) {
+            if (!isPrime(p) || !isPrime(q)) 
+            {
                 System.out.println("Both numbers must be prime.");
                 return;
             }
@@ -58,7 +68,8 @@ public class RSA {
             BigInteger phi = (P.subtract(BigInteger.ONE)).multiply(Q.subtract(BigInteger.ONE));
 
             BigInteger e = BigInteger.valueOf(2);
-            while (e.compareTo(phi) < 0) {
+            while (e.compareTo(phi) < 0) 
+            {
                 if (gcd(e, phi).equals(BigInteger.ONE)) break;
                 e = e.add(BigInteger.ONE);
             }
@@ -69,19 +80,22 @@ public class RSA {
             String plaintext = sc.nextLine();
 
             BigInteger[] cipher = new BigInteger[plaintext.length()];
-            for (int i = 0; i < plaintext.length(); i++) {
+            for (int i = 0; i < plaintext.length(); i++) 
+            {
                 cipher[i] = BigInteger.valueOf((int) plaintext.charAt(i)).modPow(e, n);
             }
 
             System.out.print("Encrypted message: [");
-            for (int i = 0; i < cipher.length; i++) {
+            for (int i = 0; i < cipher.length; i++) 
+            {
                 System.out.print(cipher[i]);
                 if (i < cipher.length - 1) System.out.print(", ");
             }
             System.out.println("]");
 
             StringBuilder decrypted = new StringBuilder();
-            for (BigInteger c : cipher) {
+            for (BigInteger c : cipher) 
+            {
                 int m = c.modPow(d, n).intValue();
                 decrypted.append((char) m);
             }
