@@ -1,6 +1,6 @@
 import hashlib
 
-message = "Hello, Cryptography!".encode()
+message = input("Enter the Message: ").encode()
 
 md5_hash = hashlib.md5(message).hexdigest()
 print("MD5 Hash: ",md5_hash)
